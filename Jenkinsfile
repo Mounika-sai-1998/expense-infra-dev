@@ -8,6 +8,9 @@ pipeline {
         disableConcurrentBuilds()        // to queue a build when there’s already an executing build of the Pipeline
         ansiColor('xterm')
     }
+     parameters {
+        choice(name: 'action', choices: ['Apply', 'Destroy'], description: 'Pick something')
+    }
     stages {
         stage ('Init') {
             steps {
