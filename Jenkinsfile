@@ -20,32 +20,31 @@ pipeline {
                 '''
             }
         }
-    }
-    stage('Plan') { 
-        when {
-            expression{
-                params.action == 'Apply'
+    
+        stage('Plan') { 
+            when {
+                expression{
+                    params.action == 'Apply'
+                }
             }
-        steps {
-            sh '''
-                cd 01-vpc
-                terraform plan
-            '''
-                
+            steps {
+                sh '''
+                    cd 01-vpc
+                    terraform plan
+                '''
             }
         }
-    }
+    
     stage('Deploy') { 
         when {
             expression{
                 params.action == 'Apply'
             }
+        }
             input {
                 message "Should we continue?"
                 ok "Yes, we should."
             }
-        }
-
         steps {
             sh '''
                 cd 01-vpc
