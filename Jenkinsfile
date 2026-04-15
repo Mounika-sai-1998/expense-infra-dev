@@ -35,37 +35,37 @@ pipeline {
             }
         }
     
-    stage('Deploy') { 
-        when {
-            expression{
-                params.action == 'Apply'
+        stage('Deploy') { 
+            when {
+                expression{
+                    params.action == 'Apply'
+                }
+            }
+                input {
+                    message "Should we continue?"
+                    ok "Yes, we should."
+                }
+            steps {
+                sh '''
+                    cd 01-vpc
+                    terraform apply -auto-approve
+                '''
             }
         }
-            input {
-                message "Should we continue?"
-                ok "Yes, we should."
+        stage('Destroy') { 
+            when {
+                expression{
+                    params.action == 'Destroy'
+                }
             }
-        steps {
-            sh '''
-                cd 01-vpc
-                terraform apply -auto-approve
-            '''
+            steps {
+                sh '''
+                    cd 01-vpc
+                    terraform destroy -auto-approve
+                '''
+            }
         }
     }
-    stage('Destroy') { 
-        when {
-            expression{
-                params.action == 'Destroy'
-            }
-        }
-        steps {
-            sh '''
-                cd 01-vpc
-                terraform destroy -auto-approve
-            '''
-        }
-    }
-
     
     post { 
         always { 
