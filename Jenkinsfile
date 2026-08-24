@@ -19,14 +19,24 @@ pipeline {
             }
         }
         stage('Plan') {
+            input {
+                message "Should we continue?"
+                ok "Yes, we should."
+            }
             steps {
-                echo 'Testing...'
+                sh """
+                    cd 01-vpc
+                    terraform plan
+                """
                 
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying...'
+                sh """
+                    cd 01-vpc
+                    terraform approve --auto-approve
+                """
             }
         }
         
@@ -34,6 +44,7 @@ pipeline {
     post {
         always {
             echo "it will run always"
+            deleteDir()
         }
         success {
             echo "it will run when the pipeline is success"
