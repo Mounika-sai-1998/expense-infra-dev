@@ -1,82 +1,45 @@
 
 pipeline {
     agent {
-        label 'dev'
+        label 'prod'
     }
     options {
-        timeout(time: 30, unit: 'MINUTES')          // Timeout counter starts AFTER agent is allocated
-        disableConcurrentBuilds()        // to queue a build when there’s already an executing build of the Pipeline
-        ansiColor('xterm')
+        timeout( time: 1 , unit: 'MINUTES' )
+        disableConcurrentBuilds()
     }
-     parameters {
-        choice(name: 'action', choices: ['Apply', 'Destroy'], description: 'Pick something')
-    }
+    
     stages {
-        stage ('Init') {
+        stage('Init') {
             steps {
-                sh '''
-                   cd 01-vpc
-                   terraform init -reconfigure
-                '''
+                sh """
+                    ls -lrt
+                """
             }
         }
-    
-        stage('Plan') { 
-            when {
-                expression{
-                    params.action == 'Apply'
-                }
-            }
+        stage('Plan') {
             steps {
-                sh '''
-                    cd 01-vpc
-                    terraform plan
-                '''
+                echo 'Testing...'
+                
             }
         }
-    
-        stage('Deploy') { 
-            when {
-                expression{
-                    params.action == 'Apply'
-                }
-            }
-                input {
-                    message "Should we continue?"
-                    ok "Yes, we should."
-                }
+        stage('Deploy') {
             steps {
-                sh '''
-                    cd 01-vpc
-                    terraform apply -auto-approve
-                '''
+                echo 'Deploying...'
+                
             }
         }
-        stage('Destroy') { 
-            when {
-                expression{
-                    params.action == 'Destroy'
-                }
-            }
-            steps {
-                sh '''
-                    cd 01-vpc
-                    terraform destroy -auto-approve
-                '''
-            }
+        
+    }
+    post {
+        always {
+            echo "it will run always"
+        }
+        success {
+            echo "it will run when the pipeline is success"
+        }
+         failure {
+            echo "it will run when pipeline is failure"
         }
     }
     
-    post { 
-        always { 
-            echo 'I will always say Hello again!'
-            deleteDir()    // to delete workspace after the build
-        }
-        success { 
-            echo 'I will run when pipeline is success'
-        }
-        failure { 
-            echo 'I will run when pipeline is failure'
-        }
-    }
 }
