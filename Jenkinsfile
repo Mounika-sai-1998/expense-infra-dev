@@ -38,7 +38,7 @@ pipeline {
         stage('Deploy') {
             when {
                 expression {
-                   return params.Action == 'Apply'
+                   params.Action == 'Apply'
                 }
             }
             input {
@@ -56,7 +56,7 @@ pipeline {
         stage('Destroy') {
             when {
                 expression {
-                  return params.Action == 'Destroy'
+                   params.Action == 'Destroy'
                 }
             }
             steps {
