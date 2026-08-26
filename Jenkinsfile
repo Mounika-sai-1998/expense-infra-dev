@@ -9,7 +9,7 @@ pipeline {
         ansiColor('xterm')
     }
     parameters {
-        choice(name: 'Action', choices: ['Apply', 'Destroy'], description: 'Pick something')
+        choice(name: 'Action', choices: ['Deploy', 'Destroy'], description: 'Pick something')
     }
     
     stages {
@@ -24,7 +24,7 @@ pipeline {
         stage('Plan') {
             when {
                 expression {
-                    params.Action == 'Apply'
+                    params.Action == 'Deploy'
                 }
             }
             steps {
@@ -38,7 +38,7 @@ pipeline {
         stage('Deploy') {
             when {
                 expression {
-                    params.Action == 'Apply'
+                    params.Action == 'Deploy'
                 }
             }
             input {
