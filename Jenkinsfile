@@ -1,7 +1,7 @@
 
 pipeline {
     agent {
-        label 'agent'
+        label 'agent-1'
     }
     options {
         timeout( time: 1 , unit: 'MINUTES' )
@@ -19,10 +19,6 @@ pipeline {
             }
         }
         stage('Plan') {
-            input {
-                message "Should we continue?"
-                ok "Yes, we should."
-            }
             steps {
                 sh """
                     cd 01-vpc
@@ -32,6 +28,10 @@ pipeline {
             }
         }
         stage('Deploy') {
+            input {
+                message "Should we continue?"
+                ok "Yes, we should."
+            }
             steps {
                 sh """
                     cd 01-vpc
