@@ -38,13 +38,13 @@ pipeline {
         stage('Deploy') {
             when {
                 expression {
-                    params.Action == 'Apply'
+                   return params.Action == 'Apply'
                 }
             }
-            input {
+            input (
                 message "Should we continue?"
                 ok "Yes, we should."
-            }
+            )
             steps {
                 sh """
                     cd 01-vpc
@@ -56,7 +56,7 @@ pipeline {
         stage('Destroy') {
             when {
                 expression {
-                    params.Action == 'Destroy'
+                  return params.Action == 'Destroy'
                 }
             }
             steps {
