@@ -17,14 +17,14 @@ pipeline {
             steps {
                 sh """
                     cd 01-vpc
-                    terraform init --upgrade
+                    terraform init -upgrade
                 """
             }
         }
         stage('Plan') {
             when {
                 expression {
-                    params.Action == Apply
+                    params.Action == 'Apply'
                 }
             }
             steps {
@@ -38,7 +38,7 @@ pipeline {
         stage('Deploy') {
             when {
                 expression {
-                    params.Action == Apply
+                    params.Action == 'Apply'
                 }
             }
             input {
@@ -56,7 +56,7 @@ pipeline {
         stage('Destroy') {
             when {
                 expression {
-                    params.Action == Destroy
+                    params.Action == 'Destroy'
                 }
             }
             steps {
