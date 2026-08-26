@@ -71,7 +71,7 @@ pipeline {
     post {
         always {
             echo "it will run always"
-            
+            deleteDir(
         }
         success {
             echo "it will run when the pipeline is success"
