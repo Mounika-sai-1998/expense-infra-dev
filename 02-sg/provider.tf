@@ -7,7 +7,7 @@ terraform {
     }
     backend "s3" {
         bucket = "venkatlokesh-remote-state"
-        key    = "jenkins"
+        key    = "sg-jenkins"
         region = "us-east-1"
 	    #dynamodb_table = "mounika-locking"
         use_lockfile = true
