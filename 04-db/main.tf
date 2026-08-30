@@ -50,7 +50,7 @@ module "db" {
   )
 
   manage_master_user_password = false
-  password_wo = "Expense1"
+  password_wo = "ExpenseApp1"
   password_wo_version = 1
   skip_final_snapshot = true
   
