@@ -24,7 +24,11 @@ resource "null_resource" "frontend" {
         type     = "ssh"
         user     = "ec2-user"
         password = "DevOps321"
+<<<<<<< HEAD
         host     = module.frontend.public_ip
+=======
+        host     = module.frontend.private_ip
+>>>>>>> 7e384a2 (expense-infra-dev)
     }
 
     provisioner "file" {
@@ -35,7 +39,11 @@ resource "null_resource" "frontend" {
     provisioner "remote-exec" {
         inline = [
             "chmod +x /tmp/${var.common_tags.Component}.sh",
+<<<<<<< HEAD
             "sudo sh /tmp/${var.common_tags.Component}.sh ${var.common_tags.Component} ${var.environment}"
+=======
+            "sudo sh /tmp/${var.common_tags.Component}.sh ${var.common_tags.Component} ${var.environment} ${var.app_version}"
+>>>>>>> 7e384a2 (expense-infra-dev)
         ]
     } 
 }
@@ -116,7 +124,11 @@ resource "aws_autoscaling_group" "frontend" {
     id      = aws_launch_template.frontend.id
     version = "$Latest"
   }
+<<<<<<< HEAD
   vpc_zone_identifier       = split(",", data.aws_ssm_parameter.public_subnet_ids.value)
+=======
+  vpc_zone_identifier       = split(",", data.aws_ssm_parameter.public_subnet_id.value)
+>>>>>>> 7e384a2 (expense-infra-dev)
 
   instance_refresh {
     strategy = "Rolling"
@@ -171,4 +183,8 @@ resource "aws_lb_listener_rule" "frontend" {
       values = ["web-${var.environment}.${var.zone_name}"]
     }
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 7e384a2 (expense-infra-dev)

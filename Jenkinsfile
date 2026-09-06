@@ -17,7 +17,7 @@ pipeline {
             steps {
                 sh """
                     cd 01-vpc
-                    terraform init -upgrade
+                    terraform init -reconfigure
                 """
             }
         }

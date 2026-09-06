@@ -1,5 +1,9 @@
 resource "aws_acm_certificate" "expense" {
+<<<<<<< HEAD
   domain_name       = "*.daws78s.online"
+=======
+  domain_name       = "*.lokesh.shop"
+>>>>>>> 7e384a2 (expense-infra-dev)
   validation_method = "DNS"
 
   tags = merge(

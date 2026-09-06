@@ -6,10 +6,18 @@ terraform {
             } 
     }
     backend "s3" {
+<<<<<<< HEAD
         bucket = "mounikasai-remote-state"
         key    = "expense-dev-web-alb"
         region = "us-east-1"
         dynamodb_table = "mounika-locking"
+=======
+        bucket = "venkatlokesh-remote-state"
+        key    = "jenkins-web-alb"
+        region = "us-east-1"
+            #dynamodb_table = "mounika-locking"
+        use_lockfile = true
+>>>>>>> 7e384a2 (expense-infra-dev)
    }
 }
 

@@ -223,5 +223,28 @@ resource "aws_security_group_rule" "bastion_public" {
   security_group_id = module.bastion.sg_id
 }
 
+<<<<<<< HEAD
+=======
+# added as a part of CICD
+resource "aws_security_group_rule" "backend_default_vpc" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  cidr_blocks = ["172.31.0.0/16"]
+  security_group_id = module.backend.sg_id
+}
+
+# added as a part of CICD
+resource "aws_security_group_rule" "frontend_default_vpc" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  cidr_blocks = ["172.31.0.0/16"]
+  security_group_id = module.frontend.sg_id
+}
+
+>>>>>>> 7e384a2 (expense-infra-dev)
 
 
