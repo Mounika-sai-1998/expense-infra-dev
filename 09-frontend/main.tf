@@ -24,7 +24,7 @@ resource "null_resource" "frontend" {
         type     = "ssh"
         user     = "ec2-user"
         password = "DevOps321"
-        host     = module.frontend.public_ip
+        host     = module.frontend.private_ip
     }
 
     provisioner "file" {
@@ -35,7 +35,7 @@ resource "null_resource" "frontend" {
     provisioner "remote-exec" {
         inline = [
             "chmod +x /tmp/${var.common_tags.Component}.sh",
-            "sudo sh /tmp/${var.common_tags.Component}.sh ${var.common_tags.Component} ${var.environment}"
+            "sudo sh /tmp/${var.common_tags.Component}.sh ${var.common_tags.Component} ${var.environment} ${var.app_version}"
         ]
     } 
 }
@@ -116,7 +116,7 @@ resource "aws_autoscaling_group" "frontend" {
     id      = aws_launch_template.frontend.id
     version = "$Latest"
   }
-  vpc_zone_identifier       = split(",", data.aws_ssm_parameter.public_subnet_ids.value)
+  vpc_zone_identifier       = split(",", data.aws_ssm_parameter.public_subnet_id.value)
 
   instance_refresh {
     strategy = "Rolling"

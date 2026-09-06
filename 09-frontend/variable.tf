@@ -19,9 +19,6 @@ variable "common_tags" {
 }
 
 variable "zone_name" {
-<<<<<<< HEAD
-    default = mounikasai.shop
-=======
     default = "lokesh.shop"
 }
 
@@ -29,5 +26,4 @@ variable "zone_name" {
 # created as part pf jenkins CD
 variable "app_version" {
     
->>>>>>> 7e384a2 (expense-infra-dev)
 }

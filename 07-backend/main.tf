@@ -35,11 +35,7 @@ resource "null_resource" "backend" {
     provisioner "remote-exec" {
         inline = [
             "chmod +x /tmp/${var.common_tags.Component}.sh",
-<<<<<<< HEAD
-            "sudo sh /tmp/${var.common_tags.Component}.sh ${var.common_tags.Component} ${var.environment}"
-=======
             "sudo sh /tmp/${var.common_tags.Component}.sh ${var.common_tags.Component} ${var.environment} ${var.app_version}"
->>>>>>> 7e384a2 (expense-infra-dev)
         ]
     } 
 }
@@ -125,11 +121,7 @@ resource "aws_autoscaling_group" "backend" {
     id      = aws_launch_template.backend.id
     version = "$Latest"
   }
-<<<<<<< HEAD
-  vpc_zone_identifier       = split(",", data.aws_ssm_parameter.private_subnet_ids.value)
-=======
   vpc_zone_identifier       = split(",", data.aws_ssm_parameter.private_subnet_id.value)
->>>>>>> 7e384a2 (expense-infra-dev)
 
   instance_refresh {
     strategy = "Rolling"

@@ -19,14 +19,10 @@ variable "common_tags" {
 }
 
 variable "zone_name" {
-<<<<<<< HEAD
-    default = mounikasai.shop
-=======
     default = "lokesh.shop"
 }
 
 variable "app_version" {
   description = "Application version"
   type        = string
->>>>>>> 7e384a2 (expense-infra-dev)
 }
