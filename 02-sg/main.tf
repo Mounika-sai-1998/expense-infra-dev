@@ -223,8 +223,6 @@ resource "aws_security_group_rule" "bastion_public" {
   security_group_id = module.bastion.sg_id
 }
 
-<<<<<<< HEAD
-=======
 # added as a part of CICD
 resource "aws_security_group_rule" "backend_default_vpc" {
   type              = "ingress"
@@ -245,6 +243,5 @@ resource "aws_security_group_rule" "frontend_default_vpc" {
   security_group_id = module.frontend.sg_id
 }
 
->>>>>>> 7e384a2 (expense-infra-dev)
 
 

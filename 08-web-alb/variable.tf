@@ -19,10 +19,6 @@ variable "common_tags" {
 }
 
 variable "zone_name" {
-<<<<<<< HEAD
-    default = mounikasai.shop
-=======
     default = "lokesh.shop"
->>>>>>> 7e384a2 (expense-infra-dev)
   
 }

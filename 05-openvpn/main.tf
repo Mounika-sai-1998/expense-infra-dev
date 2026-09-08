@@ -1,10 +1,6 @@
 resource "aws_key_pair" "vpn" {
   key_name   = "openvpn"
-<<<<<<< HEAD
-  public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDWfksH93Jny9BbZ8PivhRzmWqIVsmMpyqmoO6ZaQ49X USER@DESKTOP-E06LQK2"
-=======
   public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGCuz1vm/3LLp96KwmTIlz7gl8eatLqlFxJ8hTaI7VFA USER@DESKTOP-E06LQK2"
->>>>>>> 7e384a2 (expense-infra-dev)
 }
 module "vpn" {
   source  = "terraform-aws-modules/ec2-instance/aws"

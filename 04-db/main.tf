@@ -101,8 +101,4 @@ module "records" {
       ]
     }
   ]
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 7e384a2 (expense-infra-dev)
